@@ -1,4 +1,4 @@
-import { FC } from "react";
+import React, { FC } from "react";
 interface IContact {}
 
 const Contact: FC<IContact> = ({}) => {
