@@ -1,7 +1,7 @@
-import "./App.css";
+import React, { FC } from "react";
+interface IApp {}
 
-function App() {
-  return <div className="App">React</div>;
-}
-
+const App: FC<IApp> = ({}) => {
+  return <div>HECTOR</div>;
+};
 export default App;
