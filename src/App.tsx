@@ -16,7 +16,6 @@ interface IApp {}
 const App: FC<IApp> = ({}) => {
   return (
     <div>
-      <ScrollToTop />
       <Home />
       <Services />
       <Portfolio />
