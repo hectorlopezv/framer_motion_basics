@@ -1,9 +1,13 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { skillsBarAnimation } from "../animation";
+import useScroll from "../hooks/useScroll";
 import Title from "./title";
 interface ISkills {}
 
 const Skills: React.FC<ISkills> = ({}) => {
+  const [element, controls] = useScroll({});
   const skillsData = [
     {
       name: "Facial",
@@ -27,7 +31,7 @@ const Skills: React.FC<ISkills> = ({}) => {
     },
   ];
   return (
-    <Section id="skills">
+    <Section id="skills" ref={element as any}>
       <Title value="skills" />
       <div className="skills__title">
         <p>Our Skills</p>
@@ -37,13 +41,19 @@ const Skills: React.FC<ISkills> = ({}) => {
         <div className="skills__bars">
           {skillsData.map(({ name, amount }, index) => {
             return (
-              <div className="skills__bars__bar" key={name}>
+              <motion.div
+                variants={skillsBarAnimation}
+                animate={controls as any}
+                transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+                className="skills__bars__bar"
+                key={name}
+              >
                 <div className="container">
                   <progress value={amount} max="100" />
                   <span>{name}</span>
                 </div>
                 <h3>{amount}</h3>
-              </div>
+              </motion.div>
             );
           })}
         </div>
