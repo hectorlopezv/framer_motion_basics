@@ -1,12 +1,16 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { blogsAnimation } from "../animation";
 import home from "../assets/home.png";
 import play from "../assets/play.png";
+import useScroll from "../hooks/useScroll";
 import Title from "./title";
 
 interface IBlog {}
 
 const Blog: React.FC<IBlog> = ({}) => {
+  const [element, controls] = useScroll({});
   const blogsData = [
     {
       title: "PARLOUR JOURNAL",
@@ -28,12 +32,18 @@ const Blog: React.FC<IBlog> = ({}) => {
     },
   ];
   return (
-    <Section id="blog">
+    <Section id="blog" ref={element as any}>
       <Title value="Blog" />
       <div className="blogs">
         {blogsData.map(({ title, type, description }) => {
           return (
-            <div className="blog" key={title}>
+            <motion.div
+              variants={blogsAnimation}
+              animate={controls as any}
+              transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+              className="blog"
+              key={title}
+            >
               <div className="image"></div>
               <div className="title">
                 <h3>{title}</h3>
@@ -46,7 +56,7 @@ const Blog: React.FC<IBlog> = ({}) => {
                 <img src={play} alt="Play" />
                 <span>Read More</span>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
@@ -90,7 +100,7 @@ const Section = styled.section`
         height: 10rem;
         color: var(--primary-color);
       }
-      .more{
+      .more {
         display: flex;
         align-items: center;
         gap: 1rem;
