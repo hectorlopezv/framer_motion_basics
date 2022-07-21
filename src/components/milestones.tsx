@@ -31,9 +31,9 @@ const Milestones: React.FC<IMilestones> = ({}) => {
         <img src={milestoneBackground} alt="milestone background" />
       </div>
       <div className="milestones">
-        {milestones.map(({ image, data, amount }, _) => {
+        {milestones.map(({ image, data, amount }, index) => {
           return (
-            <div className="milestone">
+            <div className="milestone" key={index}>
               <p>{amount}</p>
               <span>{data}</span>
               <img src={image} alt="Milestone" />

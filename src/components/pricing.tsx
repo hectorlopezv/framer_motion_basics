@@ -78,7 +78,7 @@ const Pricing: React.FC<IPricing> = ({}) => {
       <div className="pricing">
         {plans.map(({ name, price }, index) => {
           return (
-            <div className="pricing__plan">
+            <div className="pricing__plan" key={name}>
               <div className="pricing__plan__name">
                 <h2>{name}</h2>
                 <div className="pricing__plan__name__price">

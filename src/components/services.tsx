@@ -32,7 +32,7 @@ const Services: React.FC<IServices> = ({}) => {
       <div className="services">
         {data.map(({ type, text, image }, index) => {
           return (
-            <div className="services__service">
+            <div className="services__service" key={type}>
               <div className="services__service__image">
                 <img src={image} alt="service 1" />
               </div>

@@ -33,7 +33,7 @@ const Blog: React.FC<IBlog> = ({}) => {
       <div className="blogs">
         {blogsData.map(({ title, type, description }) => {
           return (
-            <div className="blog">
+            <div className="blog" key={title}>
               <div className="image"></div>
               <div className="title">
                 <h3>{title}</h3>

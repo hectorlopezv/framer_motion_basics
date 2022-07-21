@@ -27,6 +27,7 @@ const App: FC<IApp> = ({}) => {
       <Skills />
       <Contact />
       <Footer />
+      <ScrollToTop/>
     </div>
   );
 };
