@@ -1,12 +1,16 @@
+import { motion } from "framer-motion";
 import React, { Fragment } from "react";
 import styled from "styled-components";
+import { pricingAnimation } from "../animation";
 import play from "../assets/play.png";
 import pricing1 from "../assets/pricing1.png";
 import pricing2 from "../assets/pricing2.png";
+import useScroll from "../hooks/useScroll";
 import Title from "./title";
 interface IPricing {}
 
 const Pricing: React.FC<IPricing> = ({}) => {
+  const [element, controls] = useScroll({});
   const plans = [
     {
       name: "Basic",
@@ -65,7 +69,7 @@ const Pricing: React.FC<IPricing> = ({}) => {
     },
   ];
   return (
-    <Section id="pricing">
+    <Section id="pricing" ref={element as any}>
       <Title value="pricing" />
       <div className="background">
         <img src={pricing1} alt="background1" className="bg1" />
@@ -78,7 +82,13 @@ const Pricing: React.FC<IPricing> = ({}) => {
       <div className="pricing">
         {plans.map(({ name, price }, index) => {
           return (
-            <div className="pricing__plan" key={name}>
+            <motion.div
+              variants={pricingAnimation}
+              animate={controls as any}
+              transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+              className="pricing__plan"
+              key={name}
+            >
               <div className="pricing__plan__name">
                 <h2>{name}</h2>
                 <div className="pricing__plan__name__price">
@@ -115,7 +125,7 @@ const Pricing: React.FC<IPricing> = ({}) => {
                   <img src={play} alt="Order Now" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           );
         })}
       </div>
