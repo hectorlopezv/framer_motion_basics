@@ -1,4 +1,5 @@
-import React, { FC } from "react";
+import { motion } from "framer-motion";
+import { FC } from "react";
 import Blog from "./components/blog";
 import Contact from "./components/contact";
 import Footer from "./components/footer";
@@ -11,11 +12,12 @@ import Services from "./components/services";
 import Skills from "./components/skills";
 import Testimonial from "./components/testimonials";
 import Video from "./components/video";
+
 interface IApp {}
 
 const App: FC<IApp> = ({}) => {
   return (
-    <div>
+    <motion.div initial="hidden" animate="show">
       <Home />
       <Services />
       <Portfolio />
@@ -27,8 +29,8 @@ const App: FC<IApp> = ({}) => {
       <Skills />
       <Contact />
       <Footer />
-      <ScrollToTop/>
-    </div>
+      <ScrollToTop />
+    </motion.div>
   );
 };
 export default App;
