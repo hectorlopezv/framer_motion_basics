@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { homeAnimation, homeInfoAnimation } from "../animation";
 import home from "../assets/home.png";
 import play from "../assets/play.png";
 import NavBar from "./navbar";
@@ -10,7 +12,11 @@ const Home: React.FC<IHome> = ({}) => {
   return (
     <Section id="home">
       <NavBar />
-      <div className="home">
+      <motion.div
+        className="home"
+        variants={homeAnimation}
+        transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
         <div className="content">
           <div className="title">
             <h1>Blossoms Parlour</h1>
@@ -24,9 +30,13 @@ const Home: React.FC<IHome> = ({}) => {
           </div>
           <img src={play} alt="play button" />
         </div>
-      </div>
+      </motion.div>
 
-      <div className="info">
+      <motion.div
+        className="info"
+        variants={homeInfoAnimation}
+        transition={{ delay: 0.3, duration: 0.6, type: "tween" }}
+      >
         <div className="grid">
           <div className="col">
             <strong>Parlouar Academy</strong>
@@ -55,7 +65,7 @@ const Home: React.FC<IHome> = ({}) => {
             <p>8:00 Am to 5:00 Pm</p>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Section>
   );
 };
