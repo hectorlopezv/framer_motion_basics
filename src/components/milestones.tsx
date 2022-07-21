@@ -1,13 +1,16 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { milestonesAnimations } from "../animation";
 import milestoneBackground from "../assets/milestone-background.png";
 import milestone1 from "../assets/milestone1.png";
 import milestone2 from "../assets/milestone2.png";
 import milestone3 from "../assets/milestone3.png";
-
+import useScroll from "../hooks/useScroll";
 interface IMilestones {}
 
 const Milestones: React.FC<IMilestones> = ({}) => {
+  const [element, controls] = useScroll({});
   const milestones = [
     {
       image: milestone1,
@@ -26,18 +29,28 @@ const Milestones: React.FC<IMilestones> = ({}) => {
     },
   ];
   return (
-    <Section id="milestones">
+    <Section id="milestones" ref={element as any}>
       <div className="background">
         <img src={milestoneBackground} alt="milestone background" />
       </div>
       <div className="milestones">
         {milestones.map(({ image, data, amount }, index) => {
           return (
-            <div className="milestone" key={index}>
+            <motion.div
+              variants={milestonesAnimations}
+              transition={{
+                delay: 0.03,
+                type: "tween",
+                duration: 0.8,
+              }}
+              animate={controls as any}
+              className="milestone"
+              key={index}
+            >
               <p>{amount}</p>
               <span>{data}</span>
               <img src={image} alt="Milestone" />
-            </div>
+            </motion.div>
           );
         })}
       </div>
