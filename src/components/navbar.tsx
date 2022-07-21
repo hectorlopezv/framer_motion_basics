@@ -1,13 +1,21 @@
+import { motion } from "framer-motion";
 import React, { FC } from "react";
 import styled from "styled-components";
+import { navAnimation } from "../animation";
 import logo from "../assets/logo.png";
-
+import useScroll from "../hooks/useScroll";
 interface INavBar {}
 
 const NavBar: FC<INavBar> = ({}) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [element, controls] = useScroll({});
   return (
-    <Nav>
+    <Nav
+      ref={element as any}
+      variants={navAnimation}
+      transition={{ delay: 0.1 }}
+      animate={controls as any}
+    >
       <div className="brand__container">
         <a href="#" className="brand">
           <img src={logo} alt="logo" />
@@ -42,7 +50,7 @@ const NavBar: FC<INavBar> = ({}) => {
 };
 export default NavBar;
 
-const Nav = styled.nav`
+const Nav = styled(motion.nav)`
   display: flex;
   justify-content: space-between;
   margin: 0 2rem;
