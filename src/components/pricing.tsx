@@ -65,7 +65,7 @@ const Pricing: React.FC<IPricing> = ({}) => {
     },
   ];
   return (
-    <Section>
+    <Section id="pricing">
       <Title value="pricing" />
       <div className="background">
         <img src={pricing1} alt="background1" className="bg1" />

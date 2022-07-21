@@ -26,7 +26,7 @@ const Milestones: React.FC<IMilestones> = ({}) => {
     },
   ];
   return (
-    <Section>
+    <Section id="milestones">
       <div className="background">
         <img src={milestoneBackground} alt="milestone background" />
       </div>

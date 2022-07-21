@@ -27,7 +27,7 @@ const Skills: React.FC<ISkills> = ({}) => {
     },
   ];
   return (
-    <Section>
+    <Section id="skills">
       <Title value="skills" />
       <div className="skills__title">
         <p>Our Skills</p>
@@ -120,7 +120,7 @@ const Section = styled.section`
             }
             &::-webkit-progress-value {
               height: 3rem;
-              background-color: blue;
+              background-color: white;
               border-radius: 10px;
             }
           }

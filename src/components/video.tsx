@@ -4,7 +4,7 @@ interface IVideo {}
 
 const Video: React.FC<IVideo> = ({}) => {
   return (
-    <Section>
+    <Section id="video">
       <div className="background">
         <div className="video">
           <iframe
@@ -27,9 +27,8 @@ const Section = styled.section`
   height: 100vh;
   justify-content: center;
   align-items: center;
-  display:flex;
+  display: flex;
   position: relative;
-
 
   .video {
     z-index: 10;

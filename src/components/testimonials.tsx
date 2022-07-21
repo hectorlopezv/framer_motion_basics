@@ -26,7 +26,7 @@ const Testimonial: React.FC<ITestimonial> = ({}) => {
     },
   ];
   return (
-    <Section>
+    <Section id="testimonials">
       <div className="container">
         <div className="testimonials">
           {testimonials.map(({ designation, name, review }, index) => {
@@ -125,10 +125,9 @@ const Section = styled.section`
         background-color: var(--secondary-color);
         border: 0.1rem solid transparent;
         cursor: pointer;
-
       }
-      .active{
-        background-color:transparent;
+      .active {
+        background-color: transparent;
         border: 0.1rem solid var(--secondary-color);
       }
     }

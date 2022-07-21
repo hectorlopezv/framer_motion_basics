@@ -27,7 +27,7 @@ const Services: React.FC<IServices> = ({}) => {
     },
   ];
   return (
-    <Section>
+    <Section id="services">
       <Title value="services" />
       <div className="services">
         {data.map(({ type, text, image }, index) => {
