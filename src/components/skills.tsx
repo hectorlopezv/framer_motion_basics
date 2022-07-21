@@ -150,4 +150,58 @@ const Section = styled.section`
       z-index: 2;
     }
   }
+
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    overflow-x: hidden;
+    padding: 2rem 0;
+    .background {
+      display: none;
+    }
+    .skills__title {
+      padding: 2rem;
+      text-align: center;
+      font-size: 1.2rem;
+      h2 {
+        font-size: 1.8rem;
+      }
+    }
+    .skills {
+      padding: 0;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      &__bars {
+        padding: 0.2rem;
+        gap: 0.8rem;
+        align-items: center;
+        justify-content: center;
+        &__bar {
+          .container {
+            gap: 1rem;
+            span{
+              margin-left:10px;
+            }
+            progress {
+              width: 15rem;
+              height: 1rem;
+              &::-webkit-progress-bar {
+                height: 0.8rem;
+              }
+              &::-webkit-progress-value {
+                height: 0.85rem;
+              }
+            }
+          }
+          h3 {
+            padding-right:1rem;
+            font-size: 1.42rem;
+          }
+        }
+      }
+      &__content {
+        padding: 0 2rem;
+      }
+    }
+  }
 `;

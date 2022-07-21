@@ -1,12 +1,12 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
 import { videoAnimations } from "../animation";
 import useScroll from "../hooks/useScroll";
-import {motion} from "framer-motion";
 interface IVideo {}
 
-const Video: React.FC<IVideo> = ({ }) => {
-  const[element, controls] = useScroll({});
+const Video: React.FC<IVideo> = ({}) => {
+  const [element, controls] = useScroll({});
   return (
     <Section id="video" ref={element as any}>
       <div className="background" />
@@ -40,5 +40,16 @@ const Section = styled.section`
 
   .video {
     z-index: 10;
+  }
+
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    height: 100%;
+    padding: 6rem 2rem;
+    .video {
+      iframe {
+        width: 80vw;
+        height: 20rem;
+      }
+    }
   }
 `;

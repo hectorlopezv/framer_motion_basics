@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import React, { FC } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 import { navAnimation } from "../animation";
 import logo from "../assets/logo.png";
@@ -15,15 +17,27 @@ const NavBar: FC<INavBar> = ({}) => {
       variants={navAnimation}
       transition={{ delay: 0.1 }}
       animate={controls as any}
+      state={isOpen ? true : false}
     >
       <div className="brand__container">
         <a href="#" className="brand">
           <img src={logo} alt="logo" />
         </a>
 
-        <div className="toggle"></div>
+        <div className="toggle">
+          {isOpen ? (
+            <MdClose onClick={() => setIsOpen(false)} />
+          ) : (
+            <GiHamburgerMenu
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(true);
+              }}
+            />
+          )}
+        </div>
       </div>
-      <div className="links">
+      <div className={`links ${isOpen ? "show" : ""}`}>
         <ul>
           <li className="active">
             <a href="#home">Home</a>
@@ -50,7 +64,10 @@ const NavBar: FC<INavBar> = ({}) => {
 };
 export default NavBar;
 
-const Nav = styled(motion.nav)`
+interface INavProps {
+  state: boolean;
+}
+const Nav = styled(motion.nav)<any>`
   display: flex;
   justify-content: space-between;
   margin: 0 2rem;
@@ -58,7 +75,7 @@ const Nav = styled(motion.nav)`
   padding-top: 2rem;
   .brand__container {
     margin: 0 2rem;
-    .toogle {
+    .toggle {
       display: none;
     }
   }
@@ -80,6 +97,43 @@ const Nav = styled(motion.nav)`
           font-size: 0.9rem;
           text-transform: uppercase;
         }
+      }
+    }
+  }
+  @media screen and (min-width: 280px) and (max-width: 1080px) {
+    margin: 0;
+    position: relative;
+    .brand__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      .toggle {
+        padding-right: 1rem;
+        display: block;
+        z-index: 1;
+      }
+    }
+    .show {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+    .links {
+      position: absolute;
+      overflow-x: hidden;
+      top: 0;
+      right: 0;
+      width: ${({ state }) => (state ? "100%" : "0%")};
+      height: 100vh;
+      background-color: var(--secondary-color);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.4s ease-in-out;
+      ul {
+        flex-direction: column;
+        text-align: center;
+        height: 100%;
+        justify-content: center;
       }
     }
   }
