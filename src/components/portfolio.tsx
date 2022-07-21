@@ -1,5 +1,7 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { portfolioAnimations } from "../animation";
 import loadmore from "../assets/loadmore.png";
 import portfolio10 from "../assets/portfolio10.jpg";
 import portfolio3 from "../assets/portfolio3.jpg";
@@ -9,21 +11,63 @@ import portfolio6 from "../assets/portfolio6.jpg";
 import portfolio7 from "../assets/portfolio7.jpg";
 import portfolio8 from "../assets/portfolio8.jpg";
 import portfolio9 from "../assets/portfolio9.jpg";
+import useScroll from "../hooks/useScroll";
 
 interface IPortfolio {}
 
 const Portfolio: React.FC<IPortfolio> = ({}) => {
+  const [element, controls] = useScroll({});
   return (
-    <Section id="portfolio">
+    <Section id="portfolio" ref={element as any}>
       <div className="grid">
-        <div className="child-one grid-box"></div>
-        <div className="child-two grid-box"></div>
-        <div className="child-three grid-box"></div>
-        <div className="child-four grid-box"></div>
-        <div className="child-five grid-box"></div>
-        <div className="child-six grid-box"></div>
-        <div className="child-seven grid-box"></div>
-        <div className="child-eight grid-box"></div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-one grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-two grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-three grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-four grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-five grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-six grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-seven grid-box"
+        ></motion.div>
+        <motion.div
+          variants={portfolioAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="child-eight grid-box"
+        ></motion.div>
       </div>
 
       <div className="portfolio-more">
