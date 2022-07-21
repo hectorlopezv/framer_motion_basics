@@ -1,13 +1,22 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { contactAnimation } from "../animation";
+import useScroll from "../hooks/useScroll";
 import Title from "./title";
 interface IContact {}
 
 const Contact: React.FC<IContact> = ({}) => {
+  const [element, controls] = useScroll({});
   return (
-    <Section id="contact">
+    <Section id="contact" ref={element as any}>
       <Title value="contact" />
-      <div className="contact">
+      <motion.div
+        variants={contactAnimation}
+        animate={controls as any}
+        transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+        className="contact"
+      >
         <div className="contact__title">
           <p>Stay in touch with me</p>
           <h2>Quick Contact</h2>
@@ -42,7 +51,7 @@ const Contact: React.FC<IContact> = ({}) => {
             <button>Send Message</button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </Section>
   );
 };
