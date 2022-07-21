@@ -1,10 +1,14 @@
+import { motion } from "framer-motion";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { testimonialsAnimations } from "../animation";
 import loadmore from "../assets/loadmore.png";
+import useScroll from "../hooks/useScroll";
 interface ITestimonial {}
 
 const Testimonial: React.FC<ITestimonial> = ({}) => {
   const [selected, setSelected] = useState(0);
+  const [element, controls] = useScroll({});
   const testimonials = [
     {
       designation: "SPA",
@@ -26,9 +30,14 @@ const Testimonial: React.FC<ITestimonial> = ({}) => {
     },
   ];
   return (
-    <Section id="testimonials">
+    <Section id="testimonials" ref={element as any}>
       <div className="container">
-        <div className="testimonials">
+        <motion.div
+          variants={testimonialsAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="testimonials"
+        >
           {testimonials.map(({ designation, name, review }, index) => {
             return (
               <div
@@ -50,21 +59,26 @@ const Testimonial: React.FC<ITestimonial> = ({}) => {
               </div>
             );
           })}
-        </div>
-        <div className="controls">
+        </motion.div>
+        <motion.div
+          variants={testimonialsAnimations}
+          animate={controls as any}
+          transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+          className="controls"
+        >
           <button
             className={selected === 0 ? "active" : ""}
             onClick={() => setSelected(0)}
-          ></button>
+          />
           <button
             className={selected === 1 ? "active" : ""}
             onClick={() => setSelected(1)}
-          ></button>
+          />
           <button
             className={selected === 2 ? "active" : ""}
             onClick={() => setSelected(2)}
-          ></button>
-        </div>
+          />
+        </motion.div>
       </div>
     </Section>
   );
