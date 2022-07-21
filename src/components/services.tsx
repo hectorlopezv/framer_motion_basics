@@ -1,14 +1,17 @@
+import { motion } from "framer-motion";
 import React from "react";
 import styled from "styled-components";
+import { servicesAnimations } from "../animation";
 import play from "../assets/play.png";
 import service1 from "../assets/service1.png";
 import service2 from "../assets/service2.png";
 import service3 from "../assets/service3.png";
-
+import useScroll from "../hooks/useScroll";
 import Title from "./title";
 interface IServices {}
 
 const Services: React.FC<IServices> = ({}) => {
+  const [element, controls] = useScroll({});
   const data = [
     {
       type: "Blowout",
@@ -27,12 +30,18 @@ const Services: React.FC<IServices> = ({}) => {
     },
   ];
   return (
-    <Section id="services">
+    <Section ref={element as any} id="services">
       <Title value="services" />
       <div className="services">
         {data.map(({ type, text, image }, index) => {
           return (
-            <div className="services__service" key={type}>
+            <motion.div
+              className="services__service"
+              key={type}
+              variants={servicesAnimations}
+              transition={{ delay: 0.03, type: "tween", duration: 0.8 }}
+              animate={controls as any}
+            >
               <div className="services__service__image">
                 <img src={image} alt="service 1" />
               </div>
@@ -42,7 +51,7 @@ const Services: React.FC<IServices> = ({}) => {
               </div>
               <p className="services__service__description">{text}</p>
               <img src={play} alt="Readmore" />
-            </div>
+            </motion.div>
           );
         })}
       </div>
